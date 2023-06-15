@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="test.com.miniProject.member">
+	
+	<select id="M_SELECT_ONE"
+		resultType="test.com.miniProject.member.model.MemberVO">
+		select * from mini_member where id = #{id}
+	</select>
+
+	<select id="LOGIN"
+		resultType="test.com.miniProject.member.model.MemberVO">
+		select * from mini_member where id = #{id} AND pw = #{pw}
+	</select>
+
+	<select id="ID_CHECK"
+		resultType="test.com.miniProject.member.model.MemberVO">
+		select * from mini_member where id = #{id}
+	</select>
+
+	<insert id="M_INSERT">
+		insert into mini_member(num,id,pw,name,tel,mail)
+		values(seq_minimember.nextval,#{id},#{pw},#{name},#{tel},#{mail})
+	</insert>
+
+	<update id="M_UPDATE">
+		update mini_member set pw=#{pw},name=#{name},tel=#{tel},mail=#{mail}
+		where id=#{id}
+	</update>
+
+	<delete id="M_DELETE">
+		delete from mini_member where num=#{num}
+	</delete>
+
+</mapper>

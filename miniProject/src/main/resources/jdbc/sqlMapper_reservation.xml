@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="test.com.miniProject.reservation">
+
+	<insert id="R_INSERT">
+			insert into reservation(num,user_id,movie_num,movie_date,mcount)
+			values(seq_reservation.nextval,#{user_id},#{movie_num},
+			to_date(#{movie_date},'YYYY-MM-DD HH24:MI:SS'),#{mcount})
+	</insert>
+
+	<update id="R_UPDATE">
+		update reservation set
+		movie_num=#{movie_num},movie_date=to_date(#{movie_date},'YYYY-MM-DD HH24:MI:SS'),mcount=#{mcount}
+		where num=#{num}
+	</update>
+
+	<delete id="R_DELETE">
+		delete from reservation where num=#{num}
+	</delete>
+
+	<select id="R_SELECTONE"
+		resultType ="test.com.miniProject.reservation.model.ReservationVO">
+SELECT num,user_id,movie_num,regdate,to_char(movie_date, 'YYYY/MM/DD HH24:MI:SS') as movie_date,mcount FROM reservation WHERE user_id =#{user_id}
+	</select>
+</mapper>

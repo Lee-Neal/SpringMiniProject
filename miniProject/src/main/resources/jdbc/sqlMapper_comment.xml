@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="test.com.miniProject.comment">
+
+	<insert id="C_INSERT">
+		insert into mini_comment(cnum,mnum,content,writer)
+		values(seq_minicomment.nextval,#{mnum},#{content},#{writer})
+	</insert>
+
+	<update id="C_UPDATE">
+		update mini_comment set content=#{content}
+		where cnum=#{cnum}
+	</update>
+
+	<delete id="C_DELETE">
+		delete from mini_comment where cnum=#{cnum}
+	</delete>
+
+	<select id="C_SELECTALL"
+		resultType="test.com.miniProject.comment.model.CommentVO">
+		select * from mini_comment where mnum=#{mnum} order by cnum asc
+	</select>
+
+</mapper>
